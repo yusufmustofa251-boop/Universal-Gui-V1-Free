@@ -1,0 +1,396 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "SYSTEM NOT BROKEN",
+    LoadingTitle = "FAHHH!!!",
+    LoadingSubtitle = "Ayo, Kita K1dnapping gamenya!",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "System.Configs",
+        FileName = "MainConfig"
+    }
+})
+
+local ScriptTab = Window:CreateTab("Script", 4483362458)
+
+ScriptTab:CreateButton({
+    Name = "Trial Hub",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yusufmustofa251-boop/Pros-JS-SS/refs/heads/main/Rayfield%20--%20Trial%20Hub"))()
+    end,
+})
+
+ScriptTab:CreateButton({
+    Name = 'Arceus X "Neo"',
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20X%20V3"))()
+    end,
+})
+
+ScriptTab:CreateButton({
+    Name = "Universal Gui V1",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yusufmustofa251-boop/Kill-all-Work/refs/heads/main/Kill%20all"))()
+    end,
+})
+
+local UtilityTab = Window:CreateTab("Utility", 4483362458)
+
+UtilityTab:CreateButton({
+    Name = "Skybox (c00lkidd Style)",
+    Callback = function()
+        for _, v in pairs(game:GetService("Lighting"):GetChildren()) do
+            if v:IsA("Sky") then v:Destroy() end
+        end
+
+        local sky = Instance.new("Sky")
+        sky.Name = "c00lkidd_Skybox"
+        sky.Parent = game:GetService("Lighting")
+
+        local id = "rbxassetid://8408806737"
+        sky.SkyboxBk = id
+        sky.SkyboxDn = id
+        sky.SkyboxFt = id
+        sky.SkyboxLf = id
+        sky.SkyboxRt = id
+        sky.SkyboxUp = id
+
+        game:GetService("Lighting").Brightness = 0
+        game:GetService("Lighting").ClockTime = 0
+        game:GetService("Lighting").FogEnd = 1000
+        game:GetService("Lighting").GlobalShadows = false
+        game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(255, 0, 0)
+    end,
+})
+
+UtilityTab:CreateButton({
+    Name = "Decal Spam (Workspace)",
+    Callback = function()
+        local decalID = "rbxassetid://8408806737"
+        local function applyDecals(object)
+            if object:IsA("BasePart") then
+                local sides = {"Front", "Back", "Left", "Right", "Top", "Bottom"}
+                for _, side in pairs(sides) do
+                    local decal = Instance.new("Decal")
+                    decal.Texture = decalID
+                    decal.Face = side
+                    decal.Parent = object
+                end
+            end
+        end
+
+        for _, obj in pairs(game.Workspace:GetDescendants()) do
+            applyDecals(obj)
+        end
+
+        game.Workspace.DescendantAdded:Connect(function(obj)
+            applyDecals(obj)
+        end)
+    end,
+})
+
+UllityTab:CreateButton({
+    Name = "Freeze Player Gui",
+    Callback = function()
+        local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local Input = Instance.new("TextBox")
+local FreezeBtn = Instance.new("TextButton")
+local UnfreezeBtn = Instance.new("TextButton")
+
+ScreenGui.Parent = game:GetService("CoreGui")
+Main.Name = "RealFreeze"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+Main.Size = UDim2.new(0, 200, 0, 150)
+Main.Position = UDim2.new(0.5, -100, 0.4, 0)
+Main.Active = true
+Main.Draggable = true
+
+local function style(obj, txt)
+    obj.Size = UDim2.new(1, -20, 0, 35)
+    obj.Font = Enum.Font.GothamBold
+    obj.Text = txt
+    local c = Instance.new("UICorner", obj)
+    c.CornerRadius = UDim.new(0, 6)
+end
+
+Input.Parent = Main
+Input.Position = UDim2.new(0, 10, 0, 15)
+style(Input, "")
+Input.PlaceholderText = "Nama Player..."
+
+FreezeBtn.Parent = Main
+FreezeBtn.Position = UDim2.new(0, 10, 0, 60)
+FreezeBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+style(FreezeBtn, "FREEZE (REAL)")
+
+
+UnfreezeBtn.Parent = Main
+UnfreezeBtn.Position = UDim2.new(0, 10, 0, 105)
+UnfreezeBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+style(UnfreezeBtn, "UNFREEZE")
+
+local targetPlayer = nil
+local freezeLoop = nil
+
+local function getPlr(name)
+    for _, v in pairs(game.Players:GetPlayers()) do
+        if v.Name:lower():find(name:lower()) or v.DisplayName:lower():find(name:lower()) then
+            return v
+        end
+    end
+end
+
+FreezeBtn.MouseButton1Click:Connect(function()
+    targetPlayer = getPlr(Input.Text)
+    if targetPlayer and targetPlayer.Character then
+        local root = targetPlayer.Character:FindFirstChild("HumanoidRootPart")
+        if root then
+        
+            local ff = Instance.new("ForceField")
+            ff.Name = "IceVisual_FF"
+            ff.Visible = true
+            ff.Parent = targetPlayer.Character
+            
+            local high = Instance.new("Highlight")
+            high.Name = "IceVisual_High"
+            high.FillColor = Color3.fromRGB(0, 200, 255)
+            high.OutlineColor = Color3.fromRGB(255, 255, 255)
+            high.FillTransparency = 0.5
+            high.Parent = targetPlayer.Character
+
+            -- 2. REAL FREEZE: Loop posisi biar dia gak bisa gerak di server
+            local frozenPos = root.CFrame
+            if freezeLoop then freezeLoop:Disconnect() end -- Reset loop kalau ada
+            
+            freezeLoop = game:GetService("RunService").Heartbeat:Connect(function()
+                if targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    targetPlayer.Character.HumanoidRootPart.CFrame = frozenPos
+                    targetPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+                else
+                    freezeLoop:Disconnect()
+                end
+            end)
+            print("Target Freeze: " .. targetPlayer.Name)
+        end
+    end
+end)
+
+UnfreezeBtn.MouseButton1Click:Connect(function()
+    if freezeLoop then 
+        freezeLoop:Disconnect() 
+        freezeLoop = nil
+    end
+    
+    if targetPlayer and targetPlayer.Character then
+        
+        for _, v in pairs(targetPlayer.Character:GetChildren()) do
+            if v.Name == "IceVisual_FF" or v.Name == "IceVisual_High" then
+                v:Destroy()
+            end
+        end
+    end
+    print("Target unfreeze!")
+end)
+)}
+
+UllityTab:CreateButton({
+    Name = "Unknown Hub"
+    Callback = function()
+        local Lr = {}
+local lp = game.Players.LocalPlayer
+local char = lp.Character or lp.CharacterAdded:Wait()
+local hum = char:WaitForChild("Humanoid")
+
+-- Screen Gui
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+local Main = Instance.new("Frame", ScreenGui)
+Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Main.BorderSizePixel = 2
+Main.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Main.Size = UDim2.new(0, 600, 0, 350)
+Main.Position = UDim2.new(0.5, -300, 0.5, -175)
+Main.Active = true
+Main.Draggable = true
+
+local Sidebar = Instance.new("ScrollingFrame", Main)
+Sidebar.Size = UDim2.new(0, 110, 1, -40)
+Sidebar.Position = UDim2.new(0, 5, 0, 35)
+Sidebar.BackgroundTransparency = 1
+Sidebar.ScrollBarThickness = 2
+
+local Pages = Instance.new("Frame", Main)
+Pages.Size = UDim2.new(1, -125, 1, -45)
+Pages.Position = UDim2.new(0, 120, 0, 40)
+Pages.BackgroundTransparency = 1
+
+local layout = Instance.new("UIListLayout", Sidebar)
+layout.Padding = UDim.new(0, 5)
+
+local tabs = {}
+function Lr:CreateTab(name)
+    local btn = Instance.new("TextButton", Sidebar)
+    btn.Size = UDim2.new(1, 0, 0, 30)
+    btn.Text = name
+    btn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    btn.BorderColor3 = Color3.fromRGB(255, 255, 255)
+    
+    local pg = Instance.new("ScrollingFrame", Pages)
+    pg.Size = UDim2.new(1, 0, 1, 0)
+    pg.BackgroundTransparency = 1
+    pg.Visible = false
+    pg.ScrollBarThickness = 3
+    
+    local grid = Instance.new("UIGridLayout", pg)
+    grid.CellSize = UDim2.new(0, 105, 0, 35)
+    grid.Padding = UDim2.new(0, 5, 0, 5)
+
+    btn.MouseButton1Click:Connect(function()
+        for _, v in pairs(tabs) do v.Visible = false end
+        pg.Visible = true
+    end)
+    tabs[name] = pg
+    return pg
+end
+
+function Lr:AddButton(tab, name, func)
+    local b = Instance.new("TextButton", tab)
+    b.Text = name
+    b.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+    b.TextColor3 = Color3.fromRGB(255, 255, 255)
+    b.BorderSizePixel = 1
+    b.BorderColor3 = Color3.fromRGB(255, 255, 255)
+    b.MouseButton1Click:Connect(func)
+end
+
+local MainTab = Lr:CreateTab("Main")
+local OtherTab = Lr:CreateTab("Other")
+local GhostTab = Lr:CreateTab("Script")
+local GameHub = Lr:CreateTab("GameHub")
+local ExecTab = Lr:CreateTab("Executor")
+
+-- [[ 1. MAIN FEATURES LOGIC ]] --
+Lr:AddButton(MainTab, "Infinite Jump", function()
+    game:GetService("UserInputService").JumpRequest:Connect(function()
+        lp.Character:FindFirstChildOfClass('Humanoid'):ChangeState("Jumping")
+    end)
+end)
+
+Lr:AddButton(MainTab, "Speed (100)", function() lp.Character.Humanoid.WalkSpeed = 100 end)
+Lr:AddButton(MainTab, "NoClip", function()
+    game:GetService("RunService").Stepped:Connect(function()
+        for _, v in pairs(lp.Character:GetDescendants()) do
+            if v:IsA("BasePart") then v.CanCollide = false end
+        end
+    end)
+end)
+
+Lr:AddButton(MainTab, "Anti-AFK", function()
+    local vu = game:GetService("VirtualUser")
+    lp.Idled:Connect(function() vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame) wait(1) vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame) end)
+end)
+
+Lr:AddButton(MainTab, "ESP Names", function()
+    for _, v in pairs(game.Players:GetPlayers()) do
+        if v ~= lp and v.Character then
+            local billboard = Instance.new("BillboardGui", v.Character.Head)
+            billboard.AlwaysOnTop = true; billboard.Size = UDim2.new(0, 100, 0, 50)
+            local label = Instance.new("TextLabel", billboard)
+            label.Text = v.Name; label.Size = UDim2.new(1,0,1,0); label.TextColor3 = Color3.new(1,1,1); label.BackgroundTransparency = 1
+        end
+    end
+end)
+
+Lr:AddButton(OtherTab, "Infinite Yield", function() loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))() end)
+Lr:AddButton(OtherTab, "Fly GUI", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.lua"))() end)
+Lr:AddButton(OtherTab, "Btools", function() Instance.new("HopperBin", lp.Backpack).BinType = "Hammer" Instance.new("HopperBin", lp.Backpack).BinType = "Clone" end)
+Lr:AddButton(OtherTab, "Fly v3", function() loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Gui-Fly-v3-37111"))() end)
+Lr:AddButton(OtherTab, "Item Spawner", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/yusufmustofa251-boop/Teleport-Gui-Obfuscate/refs/heads/main/Item%20Spawner"))() end)
+
+Lr:AddButton(ScriptTab, "RTX Shader", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/gclich/Bypasser/main/RTX%20Graphics"))() end)
+Lr:AddButton(ScriptTab, "Fling All", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/0866/lua/main/Fling%20All"))() end)
+
+Lr:AddButton(GameHub, "Blox Fruits", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/RealSudoHacks/SudoHub/main/BloxFruits.lua"))() end)
+Lr:AddButton(GameHub, "Brookhaven", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/IcePears/IceHub/main/IceHub.lua"))() end)
+
+local layoutExec = ExecTab:FindFirstChildOfClass("UIGridLayout")
+if layoutExec then layoutExec:Destroy() end
+
+local Box = Instance.new("TextBox", ExecTab)
+Box.Size = UDim2.new(1, -10, 0, 180)
+Box.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+Box.TextColor3 = Color3.fromRGB(0, 255, 0)
+Box.Text = "-- Input Script Here"
+Box.MultiLine = true; Box.ClearTextOnFocus = false; Box.TextXAlignment = 0; Box.TextYAlignment = 0
+
+local EBtn = Instance.new("TextButton", ExecTab)
+EBtn.Text = "EXECUTE"
+EBtn.Size = UDim2.new(0, 100, 0, 35)
+EBtn.Position = UDim2.new(0, 0, 0, 190)
+EBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+EBtn.TextColor3 = Color3.new(1,1,1)
+EBtn.MouseButton1Click:Connect(function() assert(loadstring(Box.Text))() end)
+
+local CBtn = Instance.new("TextButton", ExecTab)
+CBtn.Text = "CLEAR"
+CBtn.Size = UDim2.new(0, 100, 0, 35)
+CBtn.Position = UDim2.new(0, 110, 0, 190)
+CBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+CBtn.TextColor3 = Color3.new(1,1,1)
+CBtn.MouseButton1Click:Connect(function() Box.Text = "" end)
+
+-- Title & Close
+local Txt = Instance.new("TextLabel", Main)
+Txt.Text = "Xx UNKNOWN HUB xX"
+Txt.Size = UDim2.new(1, 0, 0, 30)
+Txt.TextColor3 = Color3.new(1,1,1)
+Txt.BackgroundTransparency = 1
+Txt.Font = "SpecialElite"
+
+local Close = Instance.new("TextButton", Main)
+Close.Text = "X"
+Close.Size = UDim2.new(0, 30, 0, 30)
+Close.Position = UDim2.new(1, -30, 0, 0)
+Close.BackgroundColor3 = Color3.new(0.5, 0, 0)
+Close.TextColor3 = Color3.new(1,1,1)
+Close.MouseButton1Click:Connect(function() ScreenGui:Destroy() end)
+
+local ScreenGui = script.Parent
+local MainFrame = ScreenGui:WaitForChild("MainFrame")
+
+local OpenButton = Instance.new("ImageButton")
+OpenButton.Name = "DeltaOpenButton"
+OpenButton.Parent = ScreenGui
+OpenButton.Size = UDim2.new(0, 50, 0, 50)
+OpenButton.Position = UDim2.new(0, 20, 0.5, -25)
+OpenButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+OpenButton.BorderSizePixel = 0
+OpenButton.Visible = false
+OpenButton.Image = "rbxassetid://15124040955"
+OpenButton.Draggable = true
+
+local CloseButton = Instance.new("TextButton")
+CloseButton.Name = "MinimizeBtn"
+CloseButton.Parent = MainFrame
+CloseButton.Size = UDim2.new(0, 30, 0, 30)
+CloseButton.Position = UDim2.new(1, -35, 0, 5)
+CloseButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+CloseButton.Text = "-"
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.TextSize = 25
+
+CloseButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = false
+    OpenButton.Visible = true
+end)
+
+OpenButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = true
+    OpenButton.Visible = false
+end)
+
+MainTab.Visible = true
+end)
+)}
