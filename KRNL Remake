@@ -1,0 +1,177 @@
+--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+--[=[
+ d888b  db    db d888888b      .d888b.      db      db    db  .d8b.  
+88' Y8b 88    88   `88'        VP  `8D      88      88    88 d8' `8b 
+88      88    88    88            odD'      88      88    88 88ooo88 
+88  ooo 88    88    88          .88'        88      88    88 88~~~88 
+88. ~8~ 88b  d88   .88.        j88.         88booo. 88b  d88 88   88    @uniquadev
+ Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
+]=]
+
+-- Instances: 13 | Scripts: 6 | Modules: 0 | Tags: 0
+local G2L = {};
+
+-- StarterGui.ScreenGui
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+
+
+-- StarterGui.ScreenGui.Frame
+G2L["2"] = Instance.new("Frame", G2L["1"]);
+G2L["2"]["BorderSizePixel"] = 0;
+G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["2"]["Position"] = UDim2.new(0.20529, 0, 0.36691, 0);
+G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel
+G2L["3"] = Instance.new("ImageLabel", G2L["2"]);
+G2L["3"]["BorderSizePixel"] = 0;
+G2L["3"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["3"]["Image"] = [[http://www.roblox.com/asset/?id=121758826224630]];
+G2L["3"]["Size"] = UDim2.new(0, 621, 0, 277);
+G2L["3"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["3"]["Position"] = UDim2.new(-106, 0, -37, 0);
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel.TextButton
+G2L["4"] = Instance.new("TextButton", G2L["3"]);
+G2L["4"]["BorderSizePixel"] = 0;
+G2L["4"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["4"]["TextSize"] = 14;
+G2L["4"]["BackgroundColor3"] = Color3.fromRGB(45, 45, 45);
+G2L["4"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["4"]["Size"] = UDim2.new(0, 88, 0, 22);
+G2L["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["4"]["Text"] = [[CLEAR]];
+G2L["4"]["Position"] = UDim2.new(0.16586, 0, 0.92058, 0);
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel.TextButton
+G2L["5"] = Instance.new("TextButton", G2L["3"]);
+G2L["5"]["BorderSizePixel"] = 0;
+G2L["5"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5"]["TextStrokeColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5"]["TextSize"] = 14;
+G2L["5"]["BackgroundColor3"] = Color3.fromRGB(49, 49, 49);
+G2L["5"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["5"]["Size"] = UDim2.new(0, 97, 0, 21);
+G2L["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["5"]["Text"] = [[EXECUTE]];
+G2L["5"]["Position"] = UDim2.new(0, 0, 0.92419, 0);
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel.TextButton.LocalScript
+G2L["6"] = Instance.new("LocalScript", G2L["5"]);
+
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel.TextButton.LocalScript
+G2L["7"] = Instance.new("LocalScript", G2L["5"]);
+
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel.TextButton.LocalScript
+G2L["8"] = Instance.new("LocalScript", G2L["5"]);
+
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel.TextBox
+G2L["9"] = Instance.new("TextBox", G2L["3"]);
+G2L["9"]["BorderSizePixel"] = 0;
+G2L["9"]["TextSize"] = 14;
+G2L["9"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["9"]["BackgroundColor3"] = Color3.fromRGB(39, 39, 39);
+G2L["9"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["9"]["Size"] = UDim2.new(0, 493, 0, 189);
+G2L["9"]["Position"] = UDim2.new(0.01449, 0, 0.2178, 0);
+G2L["9"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["9"]["Text"] = [[]];
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel.LocalScript
+G2L["a"] = Instance.new("LocalScript", G2L["3"]);
+
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel.LocalScript
+G2L["b"] = Instance.new("LocalScript", G2L["3"]);
+
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel.LocalScript
+G2L["c"] = Instance.new("LocalScript", G2L["3"]);
+
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel.TextLabel
+G2L["d"] = Instance.new("TextLabel", G2L["3"]);
+G2L["d"]["BorderSizePixel"] = 0;
+G2L["d"]["TextSize"] = 14;
+G2L["d"]["BackgroundColor3"] = Color3.fromRGB(55, 55, 55);
+G2L["d"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["d"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["d"]["Size"] = UDim2.new(0, 28, 0, 54);
+G2L["d"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["d"]["Text"] = [[1]];
+G2L["d"]["Position"] = UDim2.new(0.01449, 0, 0.21661, 0);
+
+
+-- StarterGui.ScreenGui.Frame.ImageLabel.TextButton.LocalScript
+local function C_6()
+local script = G2L["6"];
+	
+end;
+task.spawn(C_6);
+-- StarterGui.ScreenGui.Frame.ImageLabel.TextButton.LocalScript
+local function C_7()
+local script = G2L["7"];
+	local ScrTxt = script.Parent.Parent.TextBox
+	local Button = script.Parent
+	Button.MouseButton1Click:Connect(function()
+		GetService("players")
+		loadstring(Scr.Txt)()
+	end)
+end;
+task.spawn(C_7);
+-- StarterGui.ScreenGui.Frame.ImageLabel.TextButton.LocalScript
+local function C_8()
+local script = G2L["8"];
+	local ScrTxt = script.Parent.Parent.TextBox
+	local Button = script.Parent
+	Button.MouseButton1Click:Connect(function()
+		loadstring(ScrTxt.Text)()
+	end)
+end;
+task.spawn(C_8);
+-- StarterGui.ScreenGui.Frame.ImageLabel.LocalScript
+local function C_a()
+local script = G2L["a"];
+	game.Players.PlayerAdded:Connect(function(player)
+		player.CharacterAdded:Connect(function(character)
+			character:WaitForChild("Humanoid").Died:Connect(function()
+				player.PlayerGui:FindFirstChild("frame").Enabled = true  -- здесь нужно указать имя GUI [2](https://devforum.roblox.com/t/enable-ui-after-death/1880574)
+			end)
+		end)
+	end)
+end;
+task.spawn(C_a);
+-- StarterGui.ScreenGui.Frame.ImageLabel.LocalScript
+local function C_b()
+local script = G2L["b"];
+	ui = script.Parent ui.Draggable = true ui.Active = true ui.Selectable = true
+end;
+task.spawn(C_b);
+-- StarterGui.ScreenGui.Frame.ImageLabel.LocalScript
+local function C_c()
+local script = G2L["c"];
+	local msg = Instance.new("Message",workspace)
+	msg.Text = "private - teterin1900"
+	wait(10)
+	msg:Destroy()
+end;
+task.spawn(C_c);
+
+return G2L["1"], require;
